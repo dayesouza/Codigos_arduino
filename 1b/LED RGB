@@ -1,0 +1,40 @@
+//LED RGB
+//definiçoes
+//anodo eh onde chega a tens~ao
+//cathodo eh onde eu mando pro GND
+//O tio eh pra demonstrar que cada uma das portas pode ser digital (entrada ou saida) ou uma saida analogica
+//pwm efeito da rampa, aceleraçao e desaceleracao
+//O resistor nao pode ser qualquer valanalogRead(or
+//vamos colocar minimo soh pra ele entender q eu sei q preciso usar. 
+//100 ohms nesse
+
+#define ledB 11
+#define ledG 10
+#define ledR 9
+
+#define potR A0
+#define potG A1
+#define potB A2
+
+void setup(){}; //nao precisa colocar nd pq n to usando porta digital, mas tem q por
+
+void loop(){
+	//analogWrite(ledR,map(analogRead(potR,0,1023,0,255)));//um jeito
+	//um jeito melhor:
+
+	int valor_ledR = analogRead(potR);//recebe a leitura do R
+	valor_ledR = map(potR,0,1023,0,255);
+	analogWrite(ledR,valor_ledR);
+
+	int valor_ledG = analogRead(potG);//recebe a leitura do G
+	valor_ledG = map(potG,0,1023,0,255);
+	analogWrite(ledG,valor_ledG);
+
+	int valor_ledB = analogRead(potB);//recebe a leitura do B
+	valor_ledB = map(potB,0,1023,0,255);
+	analogWrite(ledB,valor_ledB);
+}
+
+-ENtrada analogica (potenicionmetro ->)saida digital (led)
+-entrada analogica saida analogica (entrada ldr pra acender um led); se n quiser pode ser o potenciometro mas em vez de aumentar tem q diminuir
+-digital -> analogico (2 botoes conforme pressiona o 1 aumenta a intensidade, aperta o 2 diminui); cada um vale  1 ponto

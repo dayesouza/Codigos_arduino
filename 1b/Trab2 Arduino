@@ -1,0 +1,18 @@
+//Trab2 Arduino
+//define o pino do potenciometro
+#define pinopot A0
+//define o led
+#define led 3
+
+void setup(){}//de saida analogica para analogica nao precisa inicializar nada
+
+void loop(){
+//le o valor do potenciometro
+	int valorpot = analogRead(pinopot);
+	//transforma o valor do potenciometro no minimo e maximo que queremos
+  	int valormap = map(valorpot, 0,1023,0,255);
+  	//seta o valor do led como o valor total menos o valor do potenciometro
+  	int valor_led = 255 - valormap;
+  	//Seta a potencia do led
+  	analogWrite(led,valor_led);
+}

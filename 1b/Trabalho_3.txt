@@ -1,0 +1,34 @@
+//Trab3 Arduino
+
+int botMais = 8;
+int botMenos = 2;
+int led = 6;
+
+int cont = 0;
+
+
+void setup() {//seta os dois botoes commo input porque vamos ler a entrada deles
+  pinMode(botMais, INPUT);
+  pinMode(botMenos, INPUT);
+}
+
+void loop() {
+  //le o estado dos botoes
+  int ledMais = digitalRead(botMais);
+  int ledMenos = digitalRead(botMenos);
+  
+  if(ledMais == HIGH){//se o ledMais for pressionado, aumenta 10 na luminosidade
+    cont = cont+10;
+    if (cont >255){//mas nunca passando de 255
+      cont = 255;
+  	}
+  }
+  else if(ledMenos == HIGH){
+    cont = cont-10;
+    if (cont < 0){//se o ledMenos for pressionado, diminui 10 mas nunca passando de 0
+      cont = 0;
+    }
+  }
+  analogWrite(led,cont);
+  delay(100);
+}
