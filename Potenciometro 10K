@@ -1,0 +1,28 @@
+Arduino
+potenciometro 10k
+
+#define pinopot A0
+
+#define pinopot A0
+
+void setup(){
+	Serial.begin(9600);//fechando a comunicaç~ao entre o arduino e o pc
+}
+
+void loop(){
+	int valorpot = analogRead(pinopot);
+	float tensao = (valorpot/1023.00)*5;
+	//3 é a porta qe ja estou usando entao vai direto
+  	int valormap = map(valorpot, 0,1023,0,255);
+  	int valorporc = map(valorpot,0,1023,0,100);
+  
+  	analogWrite(3,valormap);
+  analogWrite(5,valormap);
+  
+	Serial.print(valorpot);
+	Serial.print(" = ");
+	Serial.println(valorporc);
+  	Serial.println("%");
+	delay(200);
+  
+}
